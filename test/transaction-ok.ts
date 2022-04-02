@@ -28,22 +28,30 @@ describe("PatronusCash", async () => {
   it("Transacción realizada exitosamente a address no incluída en blacklist", async function () {
     let cuenta2Address = await eoa2.getAddress();
     let cuenta1Address = await eoa.getAddress();
-    balanceInicialCuenta1 = (await ethers.provider.getBalance(cuenta1Address)).toString();
-    balanceInicialCuenta2 = (await ethers.provider.getBalance(cuenta2Address)).toString();
-    console.log(`El balance de la cuenta 1 es: `, balanceInicialCuenta1);
-    console.log(`El balance de la cuenta 2 es: `, balanceInicialCuenta2);
+    // balanceInicialCuenta1 = (await ethers.provider.getBalance(cuenta1Address)).toString();
+    // balanceInicialCuenta2 = (await ethers.provider.getBalance(cuenta2Address)).toString();
+    // console.log(`El balance de la cuenta 1 es: `, balanceInicialCuenta1);
+    // console.log(`El balance de la cuenta 2 es: `, balanceInicialCuenta2);
+
+    balanceInicialCuenta1 = await ethers.provider.getBalance(cuenta1Address);
+    balanceInicialCuenta2 = await ethers.provider.getBalance(cuenta2Address);
 
     try {
       tx = await patronusCashContract.enviarReceptor(cuenta2Address, {value: ethers.utils.parseEther(`1`)});
       await tx.wait();
       console.log("TRANSACCION EXITOSA!")
 
-      balanceFinalCuenta1 = (await ethers.provider.getBalance(cuenta1Address)).toString();
-      balanceFinalCuenta2 = (await ethers.provider.getBalance(cuenta2Address)).toString();
+      // balanceFinalCuenta1 = (await ethers.provider.getBalance(cuenta1Address)).toString();
+      // balanceFinalCuenta2 = (await ethers.provider.getBalance(cuenta2Address)).toString();
+      // console.log(`El balance final de la cuenta 1 es: `, balanceFinalCuenta1);
+      // console.log(`El balance final de la cuenta 2 es: `, balanceFinalCuenta2);
 
-      console.log(`El balance final de la cuenta 1 es: `, balanceFinalCuenta1);
-      console.log(`El balance final de la cuenta 2 es: `, balanceFinalCuenta2);
+      balanceFinalCuenta1 = await ethers.provider.getBalance(cuenta1Address);
+      balanceFinalCuenta2 = await ethers.provider.getBalance(cuenta2Address);
 
+
+      expect(balanceFinalCuenta2, "BALANCE INCORRECTO").to.be.above(balanceInicialCuenta2);
+      expect(balanceFinalCuenta1, "BALANCE INCORRECTO").to.be.below(balanceInicialCuenta1);
     } catch (error) {
       console.log(`ERROR: ${error}`);
     }

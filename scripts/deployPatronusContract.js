@@ -17,17 +17,17 @@ async function main() {
   // await hre.run('compile');
 
   // We get the contract to deploy
-  const PatronusFactory = await hre.ethers.getContractFactory("PatronusCash");
+  const PatronusFactory = await ethers.getContractFactory("PatronusCash");
   const patronusCashContract = await PatronusFactory.deploy();
   await patronusCashContract.deployed();
   console.log("CONTRATO DEPLOYADO EN ADDRESS: ", patronusCashContract.address);
 
   //Para frontend cuando esté
-  // const data = {
-  //   address: patronusCashContract.address,
-  //   abi: JSON.parse(patronusCashContract.interface.format('json'))
-  // }
-  // fs.writeFileSync('frontend/src/ethers-contracts/PatronusCash.json', JSON.stringify(data));
+  const data = {
+    address: patronusCashContract.address,
+    abi: JSON.parse(patronusCashContract.interface.format('json'))
+  }
+  fs.writeFileSync('frontend/src/ethers-contracts/PatronusCash.json', JSON.stringify(data));
 }
 
 // We recommend this pattern to be able to use async/await everywhere

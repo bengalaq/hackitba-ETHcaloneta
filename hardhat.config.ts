@@ -2,7 +2,7 @@ import "@nomiclabs/hardhat-waffle";
 import dotenv from "dotenv";
 dotenv.config();
 const {ARCHIVE_URL, MNEMONIC} = process.env;
-import { task, HardhatUserConfig } from "hardhat/config.js";
+import { task, HardhatUserConfig } from "hardhat/config";
 
 // This is a sample Hardhat task. To learn how to create your own go to
 // https://hardhat.org/guides/create-task.html
@@ -33,10 +33,13 @@ const accounts = {
 const config: HardhatUserConfig = {
   solidity: {
     compilers: [     
-      { version: "0.8.13" }
+      { version: "0.8.0" }
     ],
   },
   networks: {
+    hardhat: {
+      chainId: 31337
+    },
     rinkeby: { //Para probar en esta red primero hay que conseguir ether de algún faucet
       url: ARCHIVE_URL,
       accounts,

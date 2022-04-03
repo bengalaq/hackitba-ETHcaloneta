@@ -37,10 +37,10 @@ describe("PatronusCash", async () => {
     balanceInicialCuenta2 = await ethers.provider.getBalance(cuenta2Address);
 
     try {
-      tx = await patronusCashContract.enviarReceptor(cuenta2Address, {value: ethers.utils.parseEther(`1`)});
+      tx = await patronusCashContract.enviarReceptor(cuenta2Address, ethers.utils.parseEther(`1`), {value: ethers.utils.parseEther(`1`)});
       await tx.wait();
       console.log("TRANSACCION EXITOSA!")
-
+      
       // balanceFinalCuenta1 = (await ethers.provider.getBalance(cuenta1Address)).toString();
       // balanceFinalCuenta2 = (await ethers.provider.getBalance(cuenta2Address)).toString();
       // console.log(`El balance final de la cuenta 1 es: `, balanceFinalCuenta1);
@@ -48,8 +48,8 @@ describe("PatronusCash", async () => {
 
       balanceFinalCuenta1 = await ethers.provider.getBalance(cuenta1Address);
       balanceFinalCuenta2 = await ethers.provider.getBalance(cuenta2Address);
-
-
+      
+      
       expect(balanceFinalCuenta2, "BALANCE INCORRECTO").to.be.above(balanceInicialCuenta2);
       expect(balanceFinalCuenta1, "BALANCE INCORRECTO").to.be.below(balanceInicialCuenta1);
     } catch (error) {

@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity 0.8.13;
+pragma solidity 0.8.0;
 
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
@@ -23,8 +23,9 @@ contract PatronusCash is Ownable, ReentrancyGuard{
 
   /// @notice Envía dinero a un address particular
   /// @dev Chequea que el address ingresado no figure dentro de la blacklist. Utiliza el modifier nonReentrant para mitigar posibles reentradas a esta función al realizar el transfer
-  function enviarReceptor(address payable _address) external payable nonReentrant {
+  function enviarReceptor(address payable _address, uint256 _value) external payable nonReentrant {
+    require(msg.value == _value);
     require(!CriminalAddresses[_address]);
-    _address.transfer(msg.value);
+    _address.transfer(_value);
   }
 }

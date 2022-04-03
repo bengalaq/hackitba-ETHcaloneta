@@ -65,7 +65,7 @@ describe("PatronusCash", async () => {
     await patronusCashContract.agregarAddress(cuenta5Address);
 
     try {
-      tx = await patronusCashContract.enviarReceptor(cuenta3Address, {value: ethers.utils.parseEther(`1`)});
+      tx = await patronusCashContract.enviarReceptor(cuenta3Address, ethers.utils.parseEther(`1`), {value: ethers.utils.parseEther(`1`)});
       await tx.wait();
       console.log("TRANSACCION EXITOSA!")
 

@@ -12,3 +12,6 @@ Hoy en día existen infinidad de scams, phishings y más actores que buscan apro
 * Integrantes: Juan Pose
 * Modalidad: Presencial
 * Categoría: Ciberseguridad y Privacidad
+
+### Link a video explicativo
+[Aqui](https://www.youtube.com/watch?v=mCbiXJWLooc)

@@ -9,7 +9,6 @@ Hoy en día existen infinidad de scams, phishings y más actores que buscan apro
 
 ### Datos de la competencia
 * Grupo: Ethcaloneta
-* Integrantes: Juan Pose
 * Modalidad: Presencial
 * Categoría: Ciberseguridad y Privacidad
 
